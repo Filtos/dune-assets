@@ -95,3 +95,50 @@ header {
   opacity: 0.6;
   margin-top: 32px;
 }
+
+/* Clickable cards */
+.card.clickable {
+  cursor: pointer;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal window */
+.modal {
+  background: #1a1a1a;
+  border-radius: 10px;
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: 16px;
+  position: relative;
+  overflow: auto;
+}
+
+/* Modal image */
+.modal-image {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #eee;
+  font-size: 28px;
+  cursor: pointer;
+}
