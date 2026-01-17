@@ -4,23 +4,29 @@ import "./app.css";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedVersion, setSelectedVersion] = useState("All");
   const [search, setSearch] = useState("");
   const [activeCard, setActiveCard] = useState(null);
 
   const categories = [
     "All",
-    ...Array.from(new Set(cards.map(card => card.category))).sort()
+    "Card",
   ];
+
+  const versions = ["All", "Base", "Rise of Ix", "Immortality", "Promo", "Uprising", "Bloodlines"];
 
   const filteredCards = cards.filter(card => {
     const matchesCategory =
       selectedCategory === "All" || card.category === selectedCategory;
 
+    const matchesVersion =
+      selectedVersion === "All" || card.source === selectedVersion;
+
     const matchesSearch = card.name
       .toLowerCase()
       .includes(search.toLowerCase());
 
-    return matchesCategory && matchesSearch;
+    return matchesVersion && matchesCategory && matchesSearch;
   });
 
   // Close modal on ESC
@@ -35,7 +41,7 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>Dune: Imperium Assets</h1>
+        <h1>Dune: Imperium All Cards</h1>
 
         <div className="controls">
           <input
@@ -46,6 +52,7 @@ function App() {
             onChange={e => setSearch(e.target.value)}
           />
 
+          Type: 
           <select
             className="category-select"
             value={selectedCategory}
@@ -54,6 +61,19 @@ function App() {
             {categories.map(category => (
               <option key={category} value={category}>
                 {category}
+              </option>
+            ))}
+          </select>
+
+          Version: 
+          <select
+            className="category-select"
+            value={selectedVersion}
+            onChange={e => setSelectedVersion(e.target.value)}
+          >
+            {versions.map(version => (
+              <option key={version} value={version}>
+                {version}
               </option>
             ))}
           </select>
@@ -69,7 +89,7 @@ function App() {
           >
             <img src={card.image} alt={card.name} />
             <h3>{card.name}</h3>
-            <p>{card.category}</p>
+            <p>Source: {card.source}</p>
           </div>
         ))}
 
